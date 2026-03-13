@@ -33,7 +33,7 @@ function AnimatedCounter({ target, suffix, label, icon }: { target: number; suff
 
 export function HeroSection() {
   return (
-    <section className="bg-hero-gradient relative overflow-hidden">
+    <section className="bg-hero-gradient relative overflow-hidden" aria-label="Apresentação de Marcos Medeiros — Candidato a Deputado Federal 2026">
       <div className="absolute inset-0 bg-[url('/images/pattern.svg')] opacity-5" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 relative">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -59,7 +59,7 @@ export function HeroSection() {
               <Link href="/tv" className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-full font-ui font-semibold transition-all hover:scale-105">
                 <Tv className="w-5 h-5" /> TV do Povo AO VIVO
               </Link>
-              <a href="https://wa.me/5522998954874" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-ui font-semibold transition-all">
+              <a href="https://wa.me/5522998954874" target="_blank" rel="noopener noreferrer" aria-label="Enviar mensagem para Marcos Medeiros no WhatsApp (abre em nova aba)" className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-ui font-semibold transition-all">
                 <MessageCircle className="w-5 h-5" /> WhatsApp
               </a>
             </div>
@@ -68,10 +68,10 @@ export function HeroSection() {
             <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--accent)]/30 to-transparent" />
               <div className="absolute inset-4 rounded-full border-4 border-[var(--accent)]/30 overflow-hidden">
-                <Image src="/images/marcos-perfil.jpg" alt="Marcos Medeiros" fill className="object-cover" priority />
+                <Image src="/images/marcos-perfil.jpg" alt="Foto de Marcos Medeiros, vereador mais votado da história de Nova Friburgo, candidato a Deputado Federal 2026 pelo DC 27" fill className="object-cover" priority />
               </div>
-              <div className="absolute -bottom-2 -right-2 bg-[var(--accent)] text-[var(--primary)] rounded-2xl px-4 py-2 font-ui font-bold text-sm shadow-xl">
-                <Award className="w-5 h-5 inline mr-1" /> 5.550 votos — Recorde NF
+              <div className="absolute -bottom-2 -right-2 bg-[var(--accent)] text-[var(--primary)] rounded-2xl px-4 py-2 font-ui font-bold text-sm shadow-xl" aria-label="5.550 votos — Recorde histórico de Nova Friburgo">
+                <Award className="w-5 h-5 inline mr-1" aria-hidden="true" /> 5.550 votos — Recorde NF
               </div>
               <div className="absolute -top-2 -left-2 bg-red-600 text-white rounded-2xl px-3 py-1.5 font-ui font-bold text-xs shadow-xl flex items-center gap-1.5">
                 <Tv className="w-4 h-4" /> TV DO POVO
@@ -85,7 +85,7 @@ export function HeroSection() {
           <AnimatedCounter target={1647} label="Projetos de Lei" icon={<FileText className="w-5 h-5 text-[var(--accent)]" />} />
           <AnimatedCounter target={20} label="Anos de Luta" icon={<Award className="w-5 h-5 text-[var(--accent)]" />} />
         </motion.div>
-        <div className="flex justify-center mt-12"><ChevronDown className="w-6 h-6 text-white/30 animate-bounce" /></div>
+        <div className="flex justify-center mt-12" aria-hidden="true"><ChevronDown className="w-6 h-6 text-white/30 animate-bounce" /></div>
       </div>
     </section>
   );

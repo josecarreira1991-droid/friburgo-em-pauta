@@ -1,29 +1,43 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Users, X, Heart, ArrowRight, Zap } from "lucide-react";
+import { motion } from "framer-motion";
+import { Users, X, Heart } from "lucide-react";
 import Link from "next/link";
 
-// Simula contador crescente de apoiadores
 function useApoiadorCounter() {
   const [count, setCount] = useState(1247);
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      // Incrementa aleatoriamente a cada 30-90 segundos
-      const shouldIncrement = Math.random() > 0.7;
-      if (shouldIncrement) {
-        setCount(prev => prev + Math.floor(Math.random() * 3) + 1);
-      }
-    }, 45000);
-    return () => clearInterval(interval);
+    // Busca contagem real da API
+    fetch("/api/leads-count")
+      .then(r => r.json())
+      .then((data: { total?: number }) => {
+        if (data.total && data.total > 0) setCount(data.total);
+      })
+      .catch(() => {});
   }, []);
+
   return count;
 }
 
 export function UrgencyBanner() {
   const apoiadores = useApoiadorCounter();
   const [dismissed, setDismissed] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const saved = sessionStorage.getItem("urgency_dismissed");
+      if (saved === "true") setDismissed(true);
+    }
+  }, []);
+
+  const handleDismiss = () => {
+    setDismissed(true);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("urgency_dismissed", "true");
+    }
+  };
 
   if (dismissed) return null;
 
@@ -37,8 +51,8 @@ export function UrgencyBanner() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 min-w-0">
           <div className="flex items-center gap-1.5 bg-[var(--accent)]/20 border border-[var(--accent)]/30 rounded-full px-3 py-1 shrink-0">
-            <Users className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span className="text-[var(--accent)] text-xs font-ui font-bold">
+            <Users className="w-3.5 h-3.5 text-[var(--accent)]" aria-hidden="true" />
+            <span className="text-[var(--accent)] text-xs font-ui font-bold" aria-live="polite">
               {apoiadores.toLocaleString("pt-BR")}
             </span>
           </div>
@@ -47,12 +61,19 @@ export function UrgencyBanner() {
           </p>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          <Link href="/apoiar"
-            className="hidden sm:flex items-center gap-1.5 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--primary)] px-3 py-1.5 rounded-full text-xs font-ui font-bold transition-all">
-            <Heart className="w-3 h-3" /> Apoiar
+          <Link
+            href="/apoiar"
+            className="hidden sm:flex items-center gap-1.5 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--primary)] px-3 py-1.5 rounded-full text-xs font-ui font-bold transition-all"
+            aria-label="Apoiar a candidatura de Marcos Medeiros"
+          >
+            <Heart className="w-3 h-3" aria-hidden="true" /> Apoiar
           </Link>
-          <button onClick={() => setDismissed(true)} className="text-white/30 hover:text-white/60 transition-colors p-1">
-            <X className="w-4 h-4" />
+          <button
+            onClick={handleDismiss}
+            className="text-white/30 hover:text-white/60 transition-colors p-1"
+            aria-label="Fechar banner"
+          >
+            <X className="w-4 h-4" aria-hidden="true" />
           </button>
         </div>
       </div>

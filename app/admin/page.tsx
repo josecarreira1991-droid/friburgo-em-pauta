@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Lock, Tv, FileText, Send, Youtube, Radio, Eye, Users, MessageCircle, Settings, LogOut } from "lucide-react";
 import Image from "next/image";
 
-const ADMIN_PASSWORD = "marcos2027"; // Will be moved to env
+const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "marcos2027";
 
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
