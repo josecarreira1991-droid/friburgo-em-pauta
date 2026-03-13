@@ -1,13 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, FileText, Users, Heart, MapPin, Calendar } from "lucide-react";
+import { Award, FileText, Users, Tv, MapPin, Calendar } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const STATS = [
-  { icon: <FileText className="w-6 h-6" />, value: "1.842+", label: "Projetos de Lei" },
-  { icon: <Award className="w-6 h-6" />, value: "20+", label: "Anos de Politica" },
+  { icon: <Award className="w-6 h-6" />, value: "5.550", label: "Votos em 2008" },
+  { icon: <Tv className="w-6 h-6" />, value: "3.575", label: "Videos TV do Povo" },
   { icon: <Users className="w-6 h-6" />, value: "#1", label: "Mais Votado da Historia" },
-  { icon: <Heart className="w-6 h-6" />, value: "3", label: "Conquistas Historicas" },
+  { icon: <FileText className="w-6 h-6" />, value: "DC 27", label: "Deputado Federal 2026" },
 ];
 
 export default function SobrePage() {
@@ -24,17 +26,12 @@ export default function SobrePage() {
               <p className="text-white/60 font-ui mt-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4" /> Nova Friburgo, RJ
                 <span className="mx-2">|</span>
-                <Calendar className="w-4 h-4" /> Candidato Dep. Federal 2026
+                <Calendar className="w-4 h-4" /> Pre-candidato Dep. Federal 2026 — DC 27
               </p>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="hidden md:flex justify-center"
-            >
-              <div className="w-64 h-64 rounded-full bg-[var(--primary-med)] border-4 border-[var(--accent)]/30 flex items-center justify-center">
-                <span className="text-6xl text-white/20 font-display">MM</span>
-              </div>
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="hidden md:flex justify-center">
+              <Image src="/images/marcos-perfil.jpg" alt="Marcos Medeiros" width={256} height={256}
+                className="rounded-full border-4 border-[var(--accent)]/30 object-cover" />
             </motion.div>
           </div>
         </div>
@@ -43,14 +40,8 @@ export default function SobrePage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {STATS.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-xl p-6 border border-[var(--border)] text-center"
-            >
+            <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="bg-white rounded-xl p-6 border border-[var(--border)] text-center">
               <div className="w-12 h-12 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center mx-auto mb-3">{s.icon}</div>
               <p className="font-display text-2xl font-bold">{s.value}</p>
               <p className="text-xs font-ui text-[var(--primary)]/50 mt-1">{s.label}</p>
@@ -61,28 +52,35 @@ export default function SobrePage() {
         <div className="prose max-w-none">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="space-y-6 text-[var(--primary)]/80 leading-relaxed">
             <p className="text-lg">
-              Marcos Medeiros e o vereador mais votado da historia de Nova Friburgo. Com mais de 20 anos dedicados a politica municipal, ele construiu um legado de 1.842+ projetos de lei que tocam cada bairro, cada escola, cada familia da cidade.
+              Marcos da Silva Alberto Medeiros, nascido em 24 de fevereiro de 1969 em Nova Friburgo, RJ. Jornalista, apresentador e reporter. Filho dos ex-vereadores Helio e Irany Medeiros.
             </p>
             <p>
-              Nascido e criado em Nova Friburgo, Marcos sempre foi o vizinho do bairro que resolveu entrar na politica para fazer diferenca de verdade. Sem juridiques, sem promessa vazia — com trabalho.
+              Em 2008, foi eleito vereador de Nova Friburgo com 5.550 votos — o recorde historico da cidade. Durante o mandato (2009-2012), atuou intensamente no plenario com centenas de projetos de lei, indicacoes e requerimentos registrados no SAPL da Camara Municipal.
             </p>
-            <h3 className="font-display text-2xl font-bold text-[var(--primary)] mt-10">As conquistas que marcaram</h3>
+
+            <h3 className="font-display text-2xl font-bold text-[var(--primary)] mt-10">TV do Povo — Canal 3</h3>
             <p>
-              <strong>A UPA (2010)</strong> — Quando Nova Friburgo precisava de atendimento de emergencia 24 horas, Marcos lutou no plenario e trouxe a UPA para a cidade. Milhares de vidas atendidas desde entao.
+              Marcos criou e apresenta a TV do Povo, canal de comunicacao direta com o povo de Nova Friburgo. Com mais de 3.575 programas produzidos, a TV do Povo cobre o dia a dia da cidade — entrevistas, eventos, denuncias e celebracoes. O canal e uma referencia de jornalismo comunitario na regiao serrana.
             </p>
+
+            <h3 className="font-display text-2xl font-bold text-[var(--primary)] mt-10">Proposta para Deputado Federal</h3>
             <p>
-              <strong>Estacio de Sa (2011)</strong> — Ensino superior acessivel. Marcos ajudou a trazer a Estacio para Friburgo, permitindo que milhares de jovens cursassem faculdade sem sair da cidade.
-            </p>
-            <p>
-              <strong>Hospital do Cancer (2013)</strong> — A compra do predio do Hospital do Cancer foi garantida gracas a mobilizacao liderada por Marcos. Tratamento oncologico perto de casa.
-            </p>
-            <h3 className="font-display text-2xl font-bold text-[var(--primary)] mt-10">Proposta para o Estado</h3>
-            <p>
-              A proposta central de Marcos para a Congresso Nacional e criar uma legislacao que obrigue municipios a ter um banco de dados de empresas locais, direcionando incentivos fiscais (Lei Rouanet, Lei do Esporte) para projetos dentro do proprio municipio.
+              A proposta central de Marcos para o Congresso Nacional e criar legislacao que redirecione incentivos fiscais (Lei Rouanet, Lei do Esporte, Lei do Audiovisual, PRONON/PRONAS) de volta para os municipios de origem. Hoje, o dinheiro dos incentivos sai do municipio e nao retorna.
             </p>
             <blockquote className="border-l-4 border-[var(--accent)] pl-6 italic text-lg">
-              "O imposto vai embora do municipio, nao volta. Meu projeto e simples: o dinheiro que ja existe, que ja e pago, que ja e lei — fica aqui."
+              "Para ser politico e preciso gostar de gente. E meu pai me ensinou a gostar de gente."
+              <footer className="text-sm text-[var(--primary)]/40 mt-2">— Marcos Medeiros, entrevista A Voz da Serra</footer>
             </blockquote>
+
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="/proposta" className="inline-flex items-center gap-2 bg-[var(--accent)] text-[var(--primary)] px-6 py-3 rounded-full font-ui font-bold hover:bg-[var(--accent)]/90 transition-all">
+                Ver Proposta Completa
+              </Link>
+              <a href="https://sapl.novafriburgo.rj.leg.br/parlamentar/84/materias" target="_blank" rel="noopener"
+                className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-6 py-3 rounded-full font-ui font-semibold hover:bg-[var(--primary-med)] transition-all">
+                Projetos no SAPL
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>

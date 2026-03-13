@@ -37,7 +37,7 @@ export function ProjectsPreview() {
         >
           <div>
             <span className="text-[var(--accent)] font-ui font-semibold text-sm uppercase tracking-wider">Trabalho Legislativo</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">1.842+ Projetos de Lei</h2>
+            <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">7.919 Materias Legislativas</h2>
           </div>
           <div className="relative w-full md:w-80">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--primary)]/30" />
@@ -88,7 +88,7 @@ export function ProjectsPreview() {
             href="/projetos"
             className="inline-flex items-center gap-2 text-[var(--accent)] font-ui font-semibold hover:underline"
           >
-            Ver todos os 1.842+ projetos <ArrowRight className="w-4 h-4" />
+            Ver todas as 7.919 materias no SAPL <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

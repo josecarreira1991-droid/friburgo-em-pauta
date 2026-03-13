@@ -1,18 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
 const TIMELINE = [
-  { ano: 2005, titulo: "Inicio na politica", desc: "Marcos Medeiros comeca sua trajetoria politica em Nova Friburgo, ouvindo as demandas do povo.", icone: "🏛️", destaque: false },
-  { ano: 2009, titulo: "Eleito vereador", desc: "Marcos Medeiros e eleito vereador pelo PTB com expressiva votacao.", icone: "🗳️", destaque: false },
-  { ano: 2010, titulo: "A UPA de Nova Friburgo", desc: "Marcos luta no plenario e consegue a implantacao da UPA — atendimento de emergencia 24 horas para a populacao.", icone: "🏥", destaque: true },
-  { ano: 2011, titulo: "Estacio de Sa em Friburgo", desc: "Ensino superior acessivel chega a Nova Friburgo. Milhares de jovens puderam cursar faculdade perto de casa.", icone: "🎓", destaque: true },
-  { ano: 2012, titulo: "319 projetos em um ano", desc: "Ano recorde: 319 PLOs, 1.337 mocoes e 593 indicacoes. Produtividade sem precedentes na Camara.", icone: "📜", destaque: false },
-  { ano: 2013, titulo: "Hospital do Cancer", desc: "A compra do predio do Hospital do Cancer foi garantida. Tratamento oncologico perto de casa para a regiao serrana.", icone: "🏛️", destaque: true },
-  { ano: 2016, titulo: "Reeleito com forca", desc: "Nova Friburgo renova a confianca em Marcos Medeiros com outra votacao expressiva.", icone: "🗳️", destaque: false },
-  { ano: 2020, titulo: "Vereador mais votado da historia", desc: "Marcos bate o recorde historico de votos para vereador em Nova Friburgo. O povo falou.", icone: "🏆", destaque: true },
-  { ano: 2024, titulo: "1.842+ projetos de lei", desc: "Marcos atinge a marca de 1.842 projetos de lei criados — o maior legado legislativo da cidade.", icone: "📋", destaque: true },
-  { ano: 2026, titulo: "Candidato a Deputado Federal", desc: "Nova Friburgo projeta Marcos para a Congresso Nacional. A luta agora e pelo povo de Nova Friburgo em Brasilia.", icone: "⭐", destaque: true },
+  { ano: 2008, titulo: "Eleito vereador", desc: "Marcos Medeiros e eleito vereador de Nova Friburgo com 5.550 votos — recorde historico da cidade.", destaque: true },
+  { ano: "2009-2012", titulo: "Mandato na Camara", desc: "Autor de centenas de projetos de lei, indicacoes e requerimentos durante o mandato. Trabalho intenso no plenario.", destaque: false },
+  { ano: "Continuo", titulo: "TV do Povo — Canal 3", desc: "Marcos cria e apresenta a TV do Povo, canal de comunicacao direta com o povo de Nova Friburgo. Mais de 3.500 programas produzidos.", destaque: true },
+  { ano: "Continuo", titulo: "Jornalismo comunitario", desc: "Atuacao como jornalista cobrindo o dia a dia de Nova Friburgo, dando voz a comunidade atraves da TV do Povo e redes sociais.", destaque: false },
+  { ano: 2024, titulo: "Candidatura a vereador", desc: "Marcos concorre novamente a vereador em Nova Friburgo, reafirmando seu compromisso com a cidade.", destaque: false },
+  { ano: 2026, titulo: "Pre-candidato a Deputado Federal", desc: "Marcos leva a luta de Nova Friburgo para o Congresso Nacional. Pelo Democrata Cristao (DC) — numero 27.", destaque: true },
 ];
 
 export default function ConquistasPage() {
@@ -22,47 +20,36 @@ export default function ConquistasPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <span className="text-[var(--accent)] font-ui font-semibold text-sm uppercase tracking-wider">Trajetoria</span>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-white mt-2">Conquistas de Marcos Medeiros</h1>
-            <p className="text-white/60 font-ui mt-3">20 anos de luta por Nova Friburgo</p>
+            <h1 className="font-display text-4xl md:text-5xl font-bold text-white mt-2">Linha do Tempo</h1>
+            <p className="text-white/50 font-ui mt-3">A trajetoria politica e jornalistica de Marcos Medeiros em Nova Friburgo.</p>
           </motion.div>
         </div>
       </section>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
         <div className="relative">
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-[var(--border)]" />
-
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-[var(--accent)]/20" />
           {TIMELINE.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className={"relative flex items-start gap-8 mb-12 " + (i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse")}
-            >
-              <div className="hidden md:block md:w-1/2" />
-
-              <div className="absolute left-8 md:left-1/2 -translate-x-1/2 z-10">
-                <div className={"w-16 h-16 rounded-full flex items-center justify-center text-2xl border-4 " +
-                  (item.destaque
-                    ? "bg-[var(--accent)] border-[var(--accent-hover)] shadow-lg shadow-[var(--accent)]/20"
-                    : "bg-white border-[var(--border)]")
-                }>
-                  {item.icone}
-                </div>
-              </div>
-
-              <div className={"ml-24 md:ml-0 md:w-1/2 " + (i % 2 === 0 ? "md:pr-12" : "md:pl-12")}>
-                <div className={"bg-white rounded-xl p-6 border shadow-sm " +
-                  (item.destaque ? "border-[var(--accent)]/30 shadow-[var(--accent)]/5" : "border-[var(--border)]")}>
-                  <span className="text-[var(--accent)] font-ui font-bold text-sm">{item.ano}</span>
-                  <h3 className="font-display text-xl font-bold mt-1 mb-2">{item.titulo}</h3>
-                  <p className="text-sm text-[var(--primary)]/70 leading-relaxed">{item.desc}</p>
-                </div>
+            <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+              className="relative pl-16 pb-12 last:pb-0">
+              <div className={"absolute left-4 w-5 h-5 rounded-full border-2 " + (item.destaque ? "bg-[var(--accent)] border-[var(--accent)]" : "bg-white border-[var(--accent)]/40")} />
+              <div className={"rounded-xl p-6 border " + (item.destaque ? "bg-[var(--accent)]/5 border-[var(--accent)]/20" : "bg-white border-[var(--border)]")}>
+                <span className="text-[var(--accent)] font-ui font-bold text-sm">{item.ano}</span>
+                <h3 className="font-display text-xl font-bold mt-1">{item.titulo}</h3>
+                <p className="text-[var(--primary)]/60 font-ui text-sm mt-2 leading-relaxed">{item.desc}</p>
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <p className="text-[var(--primary)]/40 font-ui text-sm mb-4">
+            Todos os projetos de lei estao disponiveis no SAPL da Camara Municipal.
+          </p>
+          <a href="https://sapl.novafriburgo.rj.leg.br/parlamentar/84/materias" target="_blank" rel="noopener"
+            className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-6 py-3 rounded-full font-ui font-semibold hover:bg-[var(--primary-med)] transition-all">
+            Ver Projetos no SAPL <ExternalLink className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </div>

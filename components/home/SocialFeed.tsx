@@ -1,93 +1,80 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Instagram, Facebook, MessageSquare, Heart, MessageCircle, Share2, ExternalLink } from "lucide-react";
+import { Instagram, Play, ExternalLink, Newspaper } from "lucide-react";
+import Link from "next/link";
 
-const DEMO_POSTS = [
-  {
-    platform: "instagram",
-    icon: <Instagram className="w-4 h-4" />,
-    author: "@marquinhosmedeirosnf",
-    content: "O imposto vai embora do municipio, nao volta. Minha proposta: manter esse dinheiro AQUI, financiando cultura, esporte e educacao em Nova Friburgo.",
-    likes: 234,
-    comments: 45,
-    time: "2h",
-  },
-  {
-    platform: "facebook",
-    icon: <Facebook className="w-4 h-4" />,
-    author: "Marcos Medeiros",
-    content: "Voce sabia que a UPA de Nova Friburgo nasceu de uma luta no plenario? Saude nao se negocia — se conquista. E a gente conquistou!",
-    likes: 189,
-    comments: 32,
-    time: "5h",
-  },
-  {
-    platform: "threads",
-    icon: <MessageSquare className="w-4 h-4" />,
-    author: "marquinhosmedeirosnf",
-    content: "1.842 projetos de lei. Cada um deles tem o nome de um bairro, uma escola, uma familia de Friburgo. Trabalho nao e promessa — e numero.",
-    likes: 156,
-    comments: 28,
-    time: "8h",
-  },
-];
-
-const PLATFORM_COLORS: Record<string, string> = {
-  instagram: "bg-gradient-to-r from-purple-500 to-pink-500",
-  facebook: "bg-blue-600",
-  threads: "bg-black",
-};
+interface FeedItem {
+  id: string;
+  type: string;
+  title: string;
+  thumbnail?: string;
+  url: string;
+  embed?: string;
+  source?: string;
+  views?: number;
+  duration?: string;
+  timestamp: string;
+}
 
 export function SocialFeed() {
-  return (
-    <section className="py-20 bg-[var(--bg-paper)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <span className="text-[var(--accent)] font-ui font-semibold text-sm uppercase tracking-wider">Redes Sociais</span>
-          <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">Marcos nas Redes</h2>
-        </motion.div>
+  const [feed, setFeed] = useState<FeedItem[]>([]);
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {DEMO_POSTS.map((post, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-xl border border-[var(--border)] overflow-hidden card-hover"
-            >
-              <div className="p-5">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={"w-8 h-8 rounded-full flex items-center justify-center text-white " + PLATFORM_COLORS[post.platform]}>
-                    {post.icon}
-                  </div>
-                  <div>
-                    <p className="font-ui font-semibold text-sm">{post.author}</p>
-                    <p className="text-xs text-[var(--primary)]/40 font-ui">{post.time} atras</p>
-                  </div>
+  useEffect(() => {
+    fetch("/data/social-feed.json")
+      .then(r => r.json())
+      .then((data: FeedItem[]) => setFeed(data.slice(0, 8)))
+      .catch(() => {});
+  }, []);
+
+  if (feed.length === 0) return null;
+
+  return (
+    <section className="py-20 bg-[var(--bg-light)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+          <span className="text-[var(--accent)] font-ui font-semibold text-sm uppercase tracking-wider">Feed</span>
+          <h2 className="font-display text-3xl md:text-4xl font-bold mt-2">Ultimas Atualizacoes</h2>
+          <p className="text-[var(--primary)]/50 font-ui text-sm mt-2">Conteudo atualizado automaticamente a cada 30 minutos</p>
+        </motion.div>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {feed.map((item, i) => (
+            <motion.a key={item.id} href={item.url} target="_blank" rel="noopener"
+              initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}
+              className="group bg-white rounded-xl border border-[var(--border)] overflow-hidden hover:border-[var(--accent)]/30 hover:shadow-md transition-all">
+              {item.thumbnail && (
+                <div className="relative aspect-video bg-[var(--bg-paper)]">
+                  <img src={item.thumbnail} alt={item.title} className="w-full h-full object-cover" loading="lazy" />
+                  {item.type === "youtube" && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 group-hover:bg-black/20 transition-all">
+                      <div className="w-10 h-10 rounded-full bg-red-600/90 flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                        <Play className="w-4 h-4 text-white ml-0.5" fill="white" />
+                      </div>
+                    </div>
+                  )}
+                  {item.duration && (
+                    <span className="absolute bottom-1.5 right-1.5 bg-black/80 text-white text-[10px] font-ui px-1.5 py-0.5 rounded">{item.duration}</span>
+                  )}
                 </div>
-                <p className="text-sm leading-relaxed mb-4">{post.content}</p>
-                <div className="flex items-center gap-4 text-[var(--primary)]/40 text-xs font-ui">
-                  <span className="flex items-center gap-1"><Heart className="w-3.5 h-3.5" />{post.likes}</span>
-                  <span className="flex items-center gap-1"><MessageCircle className="w-3.5 h-3.5" />{post.comments}</span>
-                  <span className="flex items-center gap-1 ml-auto"><Share2 className="w-3.5 h-3.5" /></span>
+              )}
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  {item.type === "youtube" ? (
+                    <span className="text-red-500 text-[10px] font-ui font-bold uppercase flex items-center gap-1"><Play className="w-3 h-3" /> YouTube</span>
+                  ) : (
+                    <span className="text-blue-500 text-[10px] font-ui font-bold uppercase flex items-center gap-1"><Newspaper className="w-3 h-3" /> {item.source || "Noticia"}</span>
+                  )}
                 </div>
+                <h3 className="text-sm font-ui font-medium leading-snug line-clamp-2 group-hover:text-[var(--accent)] transition-colors">{item.title}</h3>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
-
-        <div className="flex justify-center gap-4 mt-10">
-          <a href="https://instagram.com/marquinhosmedeirosnf" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-5 py-2.5 rounded-full text-sm font-ui font-semibold hover:bg-[var(--primary-med)] transition-all">
-            <Instagram className="w-4 h-4" /> Seguir no Instagram <ExternalLink className="w-3 h-3" />
-          </a>
+        <div className="mt-8 text-center">
+          <Link href="/videos" className="inline-flex items-center gap-2 text-[var(--accent)] font-ui font-semibold text-sm hover:underline">
+            Ver todos os videos e noticias <ExternalLink className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

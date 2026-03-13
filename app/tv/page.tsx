@@ -31,6 +31,7 @@ export default function TVPage() {
     { user: "Ana C.", msg: "Quando vem a proxima live?", time: "agora" },
   ]);
   const [recentVideos, setRecentVideos] = useState<Video[]>([]);
+  const [mainVideoId, setMainVideoId] = useState("YlzQmJ-9HpA");
   const [playingVideo, setPlayingVideo] = useState<Video | null>(null);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ export default function TVPage() {
       .then((data: Video[]) => {
         const good = data.filter(v => v.title.length > 10 && v.duration > 60);
         setRecentVideos(good.length >= 6 ? good.slice(0, 12) : data.slice(0, 12));
+        if (data[0]) setMainVideoId(data[0].id);
       });
   }, []);
 
@@ -69,7 +71,7 @@ export default function TVPage() {
           <div className="lg:col-span-2">
             <div className="relative aspect-video bg-black rounded-2xl overflow-hidden mb-4">
               <iframe
-                src="https://www.youtube.com/embed/live_stream?channel=UCpTkVug_tbEUPdBNKsGfxuw&autoplay=0"
+                src={"https://www.youtube.com/embed/" + mainVideoId + "?rel=0"}
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

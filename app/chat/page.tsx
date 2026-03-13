@@ -14,7 +14,7 @@ export default function ChatPage() {
               <span className="text-[var(--primary)] font-bold text-2xl">M</span>
             </div>
             <h1 className="font-display text-3xl md:text-4xl font-bold text-white">Fale com Marcos Medeiros</h1>
-            <p className="text-white/60 font-ui mt-2">Agente de IA — disponivel 24 horas por dia</p>
+            <p className="text-white/60 font-ui mt-2">Assessoria do Marcos — disponivel 24 horas</p>
             <div className="flex items-center justify-center gap-2 mt-3">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
               <span className="text-green-400 text-sm font-ui">Online agora</span>
@@ -31,7 +31,7 @@ export default function ChatPage() {
         <div className="mt-8 text-center">
           <p className="text-sm text-[var(--primary)]/40 font-ui mb-4">Prefere conversar por WhatsApp?</p>
           <a
-            href={"https://wa.me/" + (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5522999990000")}
+            href={"https://wa.me/" + (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5522998954874")}
             target="_blank"
             rel="noopener"
             className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-ui font-semibold transition-all"

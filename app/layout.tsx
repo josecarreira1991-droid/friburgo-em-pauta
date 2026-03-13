@@ -8,7 +8,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Friburgo em Pauta | Marcos Medeiros — Deputado Federal 2026",
-  description: "Portal politico de Marcos Medeiros, o vereador mais votado da historia de Nova Friburgo. Candidato a Deputado Federal RJ 2026. 1.842+ projetos de lei.",
+  description: "Portal politico de Marcos Medeiros, o vereador mais votado da historia de Nova Friburgo. Candidato a Deputado Federal RJ 2026. 7.919 materias legislativas.",
   keywords: ["Marcos Medeiros", "Nova Friburgo", "Deputado Federal", "RJ", "2026", "Friburgo em Pauta"],
   openGraph: {
     title: "Friburgo em Pauta | Marcos Medeiros",

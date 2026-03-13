@@ -1,7 +1,6 @@
 import { HeroSection } from "@/components/home/HeroSection";
 import { ConquistasCards } from "@/components/home/ConquistasCards";
 import { VideoFeed } from "@/components/home/VideoFeed";
-import { AudioPlayer } from "@/components/home/AudioPlayer";
 import { ProjectsPreview } from "@/components/home/ProjectsPreview";
 import { SocialFeed } from "@/components/home/SocialFeed";
 import { ChatPreview } from "@/components/home/ChatPreview";
@@ -50,7 +49,6 @@ export default function Home() {
 
       <ConquistasCards />
       <VideoFeed />
-      <AudioPlayer />
 
       {/* Link SAPL */}
       <section className="py-4 bg-[var(--bg-paper)] border-y border-[var(--border)]">

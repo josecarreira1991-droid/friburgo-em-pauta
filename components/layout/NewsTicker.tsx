@@ -2,47 +2,32 @@
 
 import { useEffect, useState } from "react";
 
-const FALLBACK_NEWS = [
-  "Nova Friburgo investe em infraestrutura para 2026",
-  "Marcos Medeiros apresenta proposta para reter impostos no municipio",
-  "UPA de Nova Friburgo completa mais um ano de funcionamento",
-  "Estacio de Sa forma nova turma em Nova Friburgo",
-  "Camara Municipal aprova novos projetos para a cidade",
-  "Hospital do Cancer amplia atendimento na regiao serrana",
-];
-
 export function NewsTicker() {
-  const [news, setNews] = useState<string[]>(FALLBACK_NEWS);
+  const [news, setNews] = useState<string[]>([
+    "Marcos Medeiros — Pre-candidato a Deputado Federal 2026 pelo DC 27",
+    "TV do Povo ao vivo todos os dias — assista na pagina TV",
+    "Mais de 3.500 programas no canal TV do Povo no YouTube",
+    "Nova Friburgo: 203 mil habitantes na regiao serrana do RJ",
+  ]);
 
   useEffect(() => {
-    fetch("/api/news-feed")
-      .then((r) => r.json())
-      .then((data) => {
-        if (data.noticias?.length) {
-          setNews(data.noticias.map((n: { titulo: string }) => n.titulo));
+    fetch("/data/news-feed.json")
+      .then(r => r.json())
+      .then((data: any[]) => {
+        if (data.length > 0) {
+          const titles = data.slice(0, 10).map((n: any) => n.title).filter(Boolean);
+          if (titles.length > 0) setNews(titles);
         }
       })
       .catch(() => {});
   }, []);
 
-  const duplicated = [...news, ...news];
-
   return (
-    <div className="bg-[var(--bg-dark)] text-white/90 py-2 overflow-hidden font-ui text-sm relative z-50">
-      <div className="flex items-center">
-        <span className="bg-[var(--accent)] text-[var(--primary)] font-bold px-4 py-1 text-xs uppercase tracking-wider shrink-0 mr-4">
-          AO VIVO
-        </span>
-        <div className="overflow-hidden flex-1">
-          <div className="news-ticker flex whitespace-nowrap gap-12">
-            {duplicated.map((item, i) => (
-              <span key={i} className="inline-flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
+    <div className="bg-[var(--accent)] text-[var(--primary)] py-1.5 overflow-hidden">
+      <div className="animate-marquee whitespace-nowrap flex gap-12 font-ui text-xs font-semibold">
+        {[...news, ...news].map((item, i) => (
+          <span key={i} className="inline-block">{item}</span>
+        ))}
       </div>
     </div>
   );
