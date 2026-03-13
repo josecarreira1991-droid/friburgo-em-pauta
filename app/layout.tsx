@@ -3,6 +3,7 @@ import { NewsTicker } from "@/components/layout/NewsTicker";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ChatFAB } from "@/components/layout/ChatFAB";
+import { PushBanner } from "@/components/notifications/PushBanner";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <ChatFAB />
+        <PushBanner />
       </body>
     </html>
   );
