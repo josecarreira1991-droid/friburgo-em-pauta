@@ -96,12 +96,29 @@ export default function ApoiarPage() {
           </div>
           <div className="flex flex-col gap-3">
             <button onClick={() => {
-              const text = `Acabei de me cadastrar para apoiar o Marcos Medeiros para Deputado Federal! Você também pode apoiar: ${window.location.href}`;
-              if (navigator.share) navigator.share({ title: "Apoie o Marcos Medeiros", text, url: window.location.href });
-              else navigator.clipboard.writeText(window.location.href).then(() => alert("Link copiado!"));
+              const url = window.location.origin + "/apoiar";
+              const text = "Acabei de me cadastrar para apoiar o Marcos Medeiros para Deputado Federal! Você também pode apoiar: " + url;
+              if (typeof navigator !== "undefined" && navigator.share) {
+                navigator.share({ title: "Apoie o Marcos Medeiros — DC 27", text, url }).catch(() => {
+                  if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => alert("Link copiado! Cole no WhatsApp."));
+                });
+              } else if (typeof navigator !== "undefined" && navigator.clipboard) {
+                navigator.clipboard.writeText(url).then(() => alert("Link copiado! Cole no WhatsApp."));
+              } else {
+                const wa = "https://wa.me/?text=" + encodeURIComponent(text);
+                window.open(wa, "_blank");
+              }
             }}
               className="flex items-center justify-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--primary)] py-3 rounded-xl font-ui font-bold transition-all">
               <Share2 className="w-5 h-5" /> Compartilhar — Chame mais pessoas
+            </button>
+            <button onClick={() => {
+              const url = window.location.origin + "/apoiar";
+              const text = encodeURIComponent("Acabei de apoiar o Marcos Medeiros para Deputado Federal! Você também pode: " + url);
+              window.open("https://wa.me/?text=" + text, "_blank");
+            }}
+              className="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-ui font-semibold transition-all">
+              <MessageCircle className="w-5 h-5" /> Chamar amigos pelo WhatsApp
             </button>
             <a href="https://wa.me/5522998954874?text=Ol%C3%A1%20Marcos%2C%20me%20cadastrei%20para%20apoiar%20sua%20candidatura!" target="_blank" rel="noopener"
               className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-ui font-semibold transition-all">
