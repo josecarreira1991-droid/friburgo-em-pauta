@@ -89,7 +89,7 @@ export default function TVPage() {
               <a href="https://www.youtube.com/@tvdopovo-canal3566" target="_blank" rel="noopener" className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-ui font-semibold flex items-center gap-2 transition-all">
                 <Youtube className="w-4 h-4" /> Inscrever-se
               </a>
-              <a href="https://instagram.com/marcos_medeiros_noticias" target="_blank" rel="noopener" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 text-white px-4 py-2 rounded-full text-sm font-ui flex items-center gap-2 transition-all">
+              <a href="https://instagram.com/marquinhosmedeirosnf" target="_blank" rel="noopener" className="bg-gradient-to-r from-purple-500 to-pink-500 hover:opacity-90 text-white px-4 py-2 rounded-full text-sm font-ui flex items-center gap-2 transition-all">
                 <Instagram className="w-4 h-4" /> Seguir
               </a>
               <a href="https://wa.me/5522998954874" target="_blank" rel="noopener" className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full text-sm font-ui flex items-center gap-2 transition-all">

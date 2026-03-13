@@ -47,7 +47,7 @@ export async function sendWelcomeEmail({ to, nome }: { to: string; nome: string 
         </p>
         <hr style="border: 1px solid #E2DDD3; margin: 30px 0;" />
         <p style="color: #666; font-size: 14px;">
-          Siga no Instagram: @marcos_medeiros_noticias
+          Siga no Instagram: @marquinhosmedeirosnf
         </p>
       </div>
     `,

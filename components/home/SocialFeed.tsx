@@ -7,7 +7,7 @@ const DEMO_POSTS = [
   {
     platform: "instagram",
     icon: <Instagram className="w-4 h-4" />,
-    author: "@marcos_medeiros_noticias",
+    author: "@marquinhosmedeirosnf",
     content: "O imposto vai embora do municipio, nao volta. Minha proposta: manter esse dinheiro AQUI, financiando cultura, esporte e educacao em Nova Friburgo.",
     likes: 234,
     comments: 45,
@@ -25,7 +25,7 @@ const DEMO_POSTS = [
   {
     platform: "threads",
     icon: <MessageSquare className="w-4 h-4" />,
-    author: "marcos_medeiros_noticias",
+    author: "marquinhosmedeirosnf",
     content: "1.842 projetos de lei. Cada um deles tem o nome de um bairro, uma escola, uma familia de Friburgo. Trabalho nao e promessa — e numero.",
     likes: 156,
     comments: 28,
@@ -85,7 +85,7 @@ export function SocialFeed() {
         </div>
 
         <div className="flex justify-center gap-4 mt-10">
-          <a href="https://instagram.com/marcos_medeiros_noticias" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-5 py-2.5 rounded-full text-sm font-ui font-semibold hover:bg-[var(--primary-med)] transition-all">
+          <a href="https://instagram.com/marquinhosmedeirosnf" target="_blank" rel="noopener" className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-5 py-2.5 rounded-full text-sm font-ui font-semibold hover:bg-[var(--primary-med)] transition-all">
             <Instagram className="w-4 h-4" /> Seguir no Instagram <ExternalLink className="w-3 h-3" />
           </a>
         </div>
