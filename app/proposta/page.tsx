@@ -33,7 +33,7 @@ const FRIBURGO_DADOS = {
   pib_per_capita: "R$ 38.789",
   receita_municipal: "R$ 881,5 milhoes",
   vereadores_eleitos: 21,
-  empresas_ativas: "~15.000",
+  empresas_ativas: "+33.000",
 };
 
 export default function PropostaPage() {
@@ -69,7 +69,7 @@ export default function PropostaPage() {
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4 }}
             className="text-xl md:text-2xl text-white/60 max-w-3xl mx-auto leading-relaxed mb-6">
-            Nova Friburgo tem mais de 15 mil empresas. Elas pagam milhoes em impostos federais e estaduais todo ano.
+            Nova Friburgo tem mais de 33 mil empresas ativas. Elas pagam milhões em impostos federais e estaduais todo ano.
             Esse dinheiro vai pra Brasilia e pro Rio — e <strong className="text-white">quase nada volta</strong>.
           </motion.p>
           <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.5 }}
@@ -149,7 +149,7 @@ export default function PropostaPage() {
             {[
               { valor: "R$ 2,8 bi", label: "Captados via Lei Rouanet em 2023", sub: "Concentrados no eixo Rio-SP. Cidades pequenas ficam de fora.", icon: <Banknote className="w-6 h-6 text-red-400" /> },
               { valor: "R$ 480 mi", label: "Lei de Incentivo ao Esporte 2023", sub: "Quase tudo vai pra grandes clubes e capitais.", icon: <Dumbbell className="w-6 h-6 text-red-400" /> },
-              { valor: "~15 mil", label: "Empresas em Nova Friburgo", sub: "Capital da moda intima + turismo + agro.", icon: <Building2 className="w-6 h-6 text-[var(--accent)]" /> },
+              { valor: "+33 mil", label: "Empresas em Nova Friburgo", sub: "Capital da moda intima + turismo + agro.", icon: <Building2 className="w-6 h-6 text-[var(--accent)]" /> },
               { valor: "~R$ 0", label: "Captado por NF via incentivos", sub: "Falta organizacao, nao falta lei.", icon: <TrendingUp className="w-6 h-6 text-red-400" /> },
             ].map((n, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
@@ -287,7 +287,7 @@ export default function PropostaPage() {
               <div className="space-y-3 text-white/70 leading-relaxed">
                 <p>Jornalista, apresentador e reporter. Criador da <strong className="text-white">TV do Povo</strong> — 3.575+ videos cobrindo o dia a dia de Nova Friburgo.</p>
                 <p>Filho dos ex-vereadores <strong className="text-white">Helio</strong> e <strong className="text-white">Irany Medeiros</strong>. Nascido e criado em Nova Friburgo.</p>
-                <p>Vereador na 16a Legislatura (2009-2012) com <strong className="text-[var(--accent)]">5.550 votos</strong> — recorde historico da cidade. Produziu <strong className="text-[var(--accent)]">7.919 materias legislativas</strong> em um unico mandato, incluindo 1.647 projetos de lei.</p>
+                <p>Vereador na 16a Legislatura (2009-2012) com <strong className="text-[var(--accent)]">5.550 votos</strong> — recorde historico da cidade. Produziu <strong className="text-[var(--accent)]">7.919 materias legislativas</strong> em um unico mandato, incluindo 1.883 projetos de lei (PLOs + Resoluções).</p>
                 <p>Colunista do <strong className="text-white">Serra News</strong>. Conhece cada rua, cada bairro, cada problema de Friburgo.</p>
               </div>
               <div className="flex flex-wrap gap-3 mt-6">

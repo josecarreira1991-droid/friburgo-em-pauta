@@ -82,7 +82,7 @@ export function HeroSection() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5 }} className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-3xl mx-auto">
           <AnimatedCounter target={5550} label="Votos — Recorde Historico" icon={<Award className="w-5 h-5 text-[var(--accent)]" />} />
           <AnimatedCounter target={7919} label="Materias Legislativas" icon={<FileText className="w-5 h-5 text-[var(--accent)]" />} />
-          <AnimatedCounter target={1647} label="Projetos de Lei" icon={<FileText className="w-5 h-5 text-[var(--accent)]" />} />
+          <AnimatedCounter target={1883} label="Projetos de Lei" icon={<FileText className="w-5 h-5 text-[var(--accent)]" />} />
           <AnimatedCounter target={20} label="Anos de Luta" icon={<Award className="w-5 h-5 text-[var(--accent)]" />} />
         </motion.div>
         <div className="flex justify-center mt-12" aria-hidden="true"><ChevronDown className="w-6 h-6 text-white/30 animate-bounce" /></div>

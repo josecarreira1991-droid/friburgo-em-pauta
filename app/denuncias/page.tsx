@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  AlertTriangle, Camera, MapPin, Send, CheckCircle,
-  Loader2, Share2, MessageCircle, Eye, Shield,
-  Megaphone, Phone, FileText, Clock, ChevronDown
+  AlertTriangle, MapPin, Send, CheckCircle,
+  Loader2, Share2, MessageCircle, Shield,
+  Megaphone, Phone, Eye, Copy, Check,
+  User, Star, ChevronRight, Info,
 } from "lucide-react";
 
 const CATEGORIAS = [
@@ -19,26 +20,71 @@ const CATEGORIAS = [
   { id: "outro", label: "Outro", emoji: "📢", desc: "Qualquer outro problema da cidade" },
 ];
 
+function gerarCodigo(categoria: string): string {
+  const cat = categoria.substring(0, 3).toUpperCase();
+  const ano = new Date().getFullYear();
+  const num = Math.floor(10000 + Math.random() * 89999);
+  return `DNF-${cat}-${ano}-${num}`;
+}
+
 export default function DenunciasPage() {
   const [form, setForm] = useState({
-    nome: "", whatsapp: "", bairro: "", categoria: "",
-    titulo: "", descricao: "", endereco: "", anonimo: false,
+    nome: "", whatsapp: "", email: "", bairro: "", profissao: "",
+    categoria: "", titulo: "", descricao: "", endereco: "", anonimo: false,
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
   const [step, setStep] = useState(1);
+  const [codigoRastreio, setCodigoRastreio] = useState("");
+  const [copiado, setCopiado] = useState(false);
+  const [dadosIncentivo, setDadosIncentivo] = useState(false);
+
+  // Mostrar incentivo de dados após 3s no step 3
+  useEffect(() => {
+    if (step >= 3) {
+      const t = setTimeout(() => setDadosIncentivo(true), 800);
+      return () => clearTimeout(t);
+    }
+  }, [step]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("loading");
+
+    const codigo = gerarCodigo(form.categoria);
+    setCodigoRastreio(codigo);
+
+    const nomeFinal = form.anonimo ? "Anônimo" : (form.nome || "Não informado");
+    const mensagem = `[DENÚNCIA — ${form.categoria.toUpperCase()}]
+Código de Rastreamento: ${codigo}
+
+Título: ${form.titulo}
+Bairro: ${form.bairro}
+Endereço: ${form.endereco || "Não informado"}
+Profissão: ${form.profissao || "Não informado"}
+
+Descrição:
+${form.descricao}
+
+--- Dados do Denunciante ---
+Nome: ${nomeFinal}
+WhatsApp: ${form.whatsapp || "Não informado"}
+Email: ${form.email || "Não informado"}
+Anônimo: ${form.anonimo ? "Sim" : "Não"}`;
+
     try {
       await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nome: form.anonimo ? "Anônimo" : form.nome,
+          nome: nomeFinal,
+          email: form.email,
           whatsapp: form.whatsapp,
-          email: "",
-          mensagem: `[DENÚNCIA — ${form.categoria.toUpperCase()}]\n\nTítulo: ${form.titulo}\nBairro: ${form.bairro}\nEndereço: ${form.endereco}\n\nDescrição:\n${form.descricao}`,
+          bairro: form.bairro,
+          profissao: form.profissao,
+          codigoRastreio: codigo,
+          categoria: form.categoria,
+          mensagem,
+          tipo: "denuncia",
         }),
       });
       setStatus("success");
@@ -48,46 +94,87 @@ export default function DenunciasPage() {
   }
 
   function handleShare() {
-    const text = `Fiz uma denúncia no portal do Marcos Medeiros sobre ${form.titulo || "um problema em Nova Friburgo"}. Você também pode denunciar: ${window.location.href}`;
-    if (navigator.share) {
-      navigator.share({ title: "Denúncia — Friburgo em Pauta", text, url: window.location.href });
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert("Link copiado!");
+    const text = `Fiz uma denúncia no portal do Marcos Medeiros sobre: "${form.titulo || "um problema em Nova Friburgo"}". Código: ${codigoRastreio}. Você também pode denunciar: ${typeof window !== "undefined" ? window.location.href : ""}`;
+    if (typeof navigator !== "undefined" && navigator.share) {
+      navigator.share({ title: "Denúncia — Friburgo em Pauta", text, url: typeof window !== "undefined" ? window.location.href : "" });
+    } else if (typeof navigator !== "undefined") {
+      navigator.clipboard.writeText(text);
+      alert("Texto copiado!");
+    }
+  }
+
+  function copiarCodigo() {
+    if (typeof navigator !== "undefined") {
+      navigator.clipboard.writeText(codigoRastreio);
+      setCopiado(true);
+      setTimeout(() => setCopiado(false), 2000);
     }
   }
 
   if (status === "success") {
     return (
-      <div className="min-h-screen bg-[var(--bg-light)] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[var(--bg-light)] flex items-center justify-center px-4 py-16">
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-          className="max-w-lg w-full bg-white rounded-3xl border border-[var(--border)] p-10 text-center shadow-xl">
+          className="max-w-lg w-full bg-white rounded-3xl border border-[var(--border)] p-8 sm:p-10 text-center shadow-xl">
           <div className="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
             <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
           <h2 className="font-display text-3xl font-bold text-[var(--primary)] mb-3">Denúncia Recebida!</h2>
-          <p className="text-[var(--primary)]/60 font-ui mb-2">
+          <p className="text-[var(--primary)]/60 font-ui mb-6">
             Marcos Medeiros e sua equipe vão analisar e dar encaminhamento ao seu caso.
           </p>
-          <p className="text-[var(--primary)]/40 font-ui text-sm mb-8">
-            Você receberá um retorno pelo WhatsApp em até 48 horas.
-          </p>
-          <div className="bg-[var(--bg-paper)] rounded-2xl p-4 mb-6 text-left">
-            <p className="font-ui text-xs text-[var(--primary)]/40 uppercase tracking-wider mb-2">Resumo da denúncia</p>
-            <p className="font-ui font-semibold text-[var(--primary)] text-sm">{form.titulo}</p>
-            <p className="font-ui text-[var(--primary)]/50 text-xs mt-1">{form.bairro} · {CATEGORIAS.find(c => c.id === form.categoria)?.label}</p>
+
+          {/* Código de rastreamento */}
+          <div className="bg-[var(--primary)] rounded-2xl p-5 mb-6">
+            <p className="text-white/60 font-ui text-xs uppercase tracking-wider mb-2">Seu código de rastreamento</p>
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-[var(--accent)] font-ui font-black text-2xl tracking-widest">{codigoRastreio}</span>
+              <button onClick={copiarCodigo}
+                className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all">
+                {copiado ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
+              </button>
+            </div>
+            <p className="text-white/40 font-ui text-xs mt-2">
+              Guarde este código para acompanhar sua denúncia
+            </p>
           </div>
+
+          {/* Resumo */}
+          <div className="bg-[var(--bg-paper)] rounded-2xl p-4 mb-6 text-left">
+            <p className="font-ui text-xs text-[var(--primary)]/40 uppercase tracking-wider mb-2">Resumo</p>
+            <p className="font-ui font-semibold text-[var(--primary)] text-sm">{form.titulo}</p>
+            <p className="font-ui text-[var(--primary)]/50 text-xs mt-1">
+              {form.bairro} · {CATEGORIAS.find(c => c.id === form.categoria)?.label}
+              {!form.anonimo && form.nome && ` · ${form.nome}`}
+            </p>
+          </div>
+
+          {/* Prazo de retorno */}
+          {!form.anonimo && form.whatsapp && (
+            <div className="bg-green-50 border border-green-200 rounded-xl p-3 mb-6 flex items-center gap-2 text-left">
+              <MessageCircle className="w-5 h-5 text-green-600 shrink-0" />
+              <p className="text-green-800 font-ui text-sm">
+                Você receberá um retorno no WhatsApp <strong>{form.whatsapp}</strong> em até 48 horas.
+              </p>
+            </div>
+          )}
+
           <div className="flex flex-col gap-3">
             <button onClick={handleShare}
               className="flex items-center justify-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--primary)] py-3 rounded-xl font-ui font-bold transition-all">
               <Share2 className="w-5 h-5" /> Compartilhar — Mostre para mais pessoas
             </button>
-            <a href="https://wa.me/5522998954874?text=Fiz%20uma%20den%C3%BAncia%20no%20portal%20e%20quero%20acompanhar" target="_blank" rel="noopener"
+            <a href={`https://wa.me/5522998954874?text=Ol%C3%A1%20Marcos%2C%20quero%20acompanhar%20minha%20den%C3%BAncia%20c%C3%B3digo%20${encodeURIComponent(codigoRastreio)}`}
+              target="_blank" rel="noopener"
               className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl font-ui font-semibold transition-all">
               <MessageCircle className="w-5 h-5" /> Acompanhar no WhatsApp
             </a>
-            <button onClick={() => { setStatus("idle"); setForm({ nome: "", whatsapp: "", bairro: "", categoria: "", titulo: "", descricao: "", endereco: "", anonimo: false }); setStep(1); }}
-              className="text-[var(--primary)]/40 font-ui text-sm hover:text-[var(--primary)] transition-colors">
+            <button onClick={() => {
+              setStatus("idle");
+              setForm({ nome: "", whatsapp: "", email: "", bairro: "", profissao: "", categoria: "", titulo: "", descricao: "", endereco: "", anonimo: false });
+              setStep(1);
+              setCodigoRastreio("");
+            }} className="text-[var(--primary)]/40 font-ui text-sm hover:text-[var(--primary)] transition-colors">
               Fazer outra denúncia
             </button>
           </div>
@@ -132,6 +219,7 @@ export default function DenunciasPage() {
       {/* Formulário */}
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-16">
         <form onSubmit={handleSubmit}>
+
           {/* Step 1 — Categoria */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
             <div className="flex items-center gap-3 mb-6">
@@ -197,44 +285,120 @@ export default function DenunciasPage() {
             )}
           </AnimatePresence>
 
-          {/* Step 3 — Identificação */}
+          {/* Step 3 — Identificação com incentivo inteligente */}
           <AnimatePresence>
             {step >= 3 && (
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-4">
                   <div className="w-8 h-8 rounded-full bg-[var(--accent)] flex items-center justify-center text-[var(--primary)] font-bold text-sm">3</div>
-                  <h2 className="font-display text-xl font-bold text-[var(--primary)]">Seus dados (para retorno)</h2>
+                  <h2 className="font-display text-xl font-bold text-[var(--primary)]">Seus dados</h2>
                 </div>
+
+                {/* Banner de incentivo — aparece após 800ms */}
+                <AnimatePresence>
+                  {dadosIncentivo && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.98 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-med)] rounded-2xl p-5 mb-5 border border-[var(--accent)]/30"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[var(--accent)]/20 flex items-center justify-center shrink-0">
+                          <Star className="w-5 h-5 text-[var(--accent)]" />
+                        </div>
+                        <div>
+                          <p className="text-white font-ui font-bold text-sm mb-1">
+                            💡 Recomendamos deixar seus dados para acompanhamento
+                          </p>
+                          <p className="text-white/70 font-ui text-sm leading-relaxed">
+                            Ao informar seus dados, a equipe do Marcos pode entrar em contato com atualizações sobre sua denúncia e confirmar quando o problema for resolvido. Você também recebe um <strong className="text-[var(--accent)]">código de rastreamento</strong> exclusivo para acompanhar o status.
+                          </p>
+                          <div className="flex flex-wrap gap-3 mt-3">
+                            {[
+                              "📲 Retorno em até 48h",
+                              "🔍 Código de rastreamento",
+                              "✅ Confirmação de resolução",
+                            ].map((item, i) => (
+                              <span key={i} className="text-white/60 text-xs font-ui flex items-center gap-1">
+                                <ChevronRight className="w-3 h-3 text-[var(--accent)]" /> {item}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
                 <div className="bg-white rounded-2xl border border-[var(--border)] p-6 space-y-4">
-                  <div className="flex items-center gap-3 p-3 bg-[var(--bg-paper)] rounded-xl border border-[var(--border)]">
+                  {/* Toggle anônimo */}
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-[var(--bg-paper)] border border-[var(--border)]">
                     <input type="checkbox" id="anonimo" checked={form.anonimo}
                       onChange={e => setForm({ ...form, anonimo: e.target.checked })}
                       className="w-4 h-4 accent-[var(--accent)]" />
-                    <label htmlFor="anonimo" className="font-ui text-sm text-[var(--primary)] cursor-pointer">
-                      <strong>Quero ser anônimo</strong> — minha identidade não será divulgada
+                    <label htmlFor="anonimo" className="font-ui text-sm text-[var(--primary)] cursor-pointer flex-1">
+                      <strong>Prefiro ser anônimo</strong>
+                      <span className="text-[var(--primary)]/50 font-normal"> — minha identidade não será divulgada</span>
                     </label>
+                    {form.anonimo && (
+                      <span className="text-xs font-ui text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
+                        Sem retorno
+                      </span>
+                    )}
                   </div>
-                  {!form.anonimo && (
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-xs font-ui font-semibold text-[var(--primary)]/50 uppercase tracking-wider">Seu nome</label>
-                        <input type="text" placeholder="Seu nome completo"
-                          value={form.nome} onChange={e => setForm({ ...form, nome: e.target.value })}
-                          className="w-full mt-1 px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--bg-paper)] font-ui text-sm outline-none focus:border-[var(--accent)] transition-colors" />
-                      </div>
-                      <div>
-                        <label className="text-xs font-ui font-semibold text-[var(--primary)]/50 uppercase tracking-wider flex items-center gap-1">
-                          <Phone className="w-3 h-3" /> WhatsApp (para retorno)
-                        </label>
-                        <input type="tel" placeholder="(22) 99999-0000"
-                          value={form.whatsapp} onChange={e => setForm({ ...form, whatsapp: e.target.value })}
-                          className="w-full mt-1 px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--bg-paper)] font-ui text-sm outline-none focus:border-[var(--accent)] transition-colors" />
-                      </div>
-                    </div>
+
+                  {/* Aviso quando anônimo */}
+                  {form.anonimo && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                      className="flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-xl p-3">
+                      <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
+                      <p className="text-amber-800 font-ui text-xs">
+                        Denúncias anônimas são aceitas, mas não conseguimos enviar atualizações nem confirmar a resolução do problema sem seus dados de contato.
+                      </p>
+                    </motion.div>
                   )}
+
+                  {/* Campos de dados */}
+                  {!form.anonimo && (
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-xs font-ui font-semibold text-[var(--primary)]/50 uppercase tracking-wider flex items-center gap-1">
+                            <User className="w-3 h-3" /> Seu nome
+                          </label>
+                          <input type="text" placeholder="Seu nome completo"
+                            value={form.nome} onChange={e => setForm({ ...form, nome: e.target.value })}
+                            className="w-full mt-1 px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--bg-paper)] font-ui text-sm outline-none focus:border-[var(--accent)] transition-colors" />
+                        </div>
+                        <div>
+                          <label className="text-xs font-ui font-semibold text-[var(--primary)]/50 uppercase tracking-wider flex items-center gap-1">
+                            <Phone className="w-3 h-3" /> WhatsApp <span className="text-[var(--accent)] normal-case">★ recomendado</span>
+                          </label>
+                          <input type="tel" placeholder="(22) 99999-0000"
+                            value={form.whatsapp} onChange={e => setForm({ ...form, whatsapp: e.target.value })}
+                            className="w-full mt-1 px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--bg-paper)] font-ui text-sm outline-none focus:border-[var(--accent)] transition-colors" />
+                        </div>
+                      </div>
+                      <div className="grid sm:grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-xs font-ui font-semibold text-[var(--primary)]/50 uppercase tracking-wider">Email (opcional)</label>
+                          <input type="email" placeholder="seu@email.com"
+                            value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
+                            className="w-full mt-1 px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--bg-paper)] font-ui text-sm outline-none focus:border-[var(--accent)] transition-colors" />
+                        </div>
+                        <div>
+                          <label className="text-xs font-ui font-semibold text-[var(--primary)]/50 uppercase tracking-wider">Profissão (opcional)</label>
+                          <input type="text" placeholder="Ex: Professor, Comerciante, Servidor..."
+                            value={form.profissao} onChange={e => setForm({ ...form, profissao: e.target.value })}
+                            className="w-full mt-1 px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--bg-paper)] font-ui text-sm outline-none focus:border-[var(--accent)] transition-colors" />
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
                   <div className="flex items-start gap-2 text-[var(--primary)]/40 text-xs font-ui">
                     <Shield className="w-3 h-3 mt-0.5 shrink-0" />
-                    <p>Seus dados são usados apenas para retorno da equipe do Marcos. Nunca serão divulgados sem sua autorização.</p>
+                    <p>Seus dados são usados apenas pela equipe do Marcos Medeiros para retorno e acompanhamento. Nunca serão divulgados ou compartilhados com terceiros.</p>
                   </div>
                 </div>
               </motion.div>
@@ -244,6 +408,17 @@ export default function DenunciasPage() {
           {/* Botão enviar */}
           {step >= 3 && form.titulo && form.bairro && form.descricao && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+              {/* Preview do código que será gerado */}
+              <div className="bg-[var(--primary)]/5 border border-[var(--primary)]/10 rounded-xl p-3 mb-4 flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/20 flex items-center justify-center shrink-0">
+                  <CheckCircle className="w-4 h-4 text-[var(--accent)]" />
+                </div>
+                <div>
+                  <p className="font-ui text-xs text-[var(--primary)]/50 uppercase tracking-wider">Ao enviar, você receberá</p>
+                  <p className="font-ui text-sm text-[var(--primary)] font-semibold">Código de rastreamento exclusivo + retorno em até 48h{!form.anonimo && form.whatsapp ? " no WhatsApp" : ""}</p>
+                </div>
+              </div>
+
               <button type="submit" disabled={status === "loading"}
                 className="w-full bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--primary)] py-4 rounded-2xl font-ui font-bold text-lg transition-all flex items-center justify-center gap-3 disabled:opacity-50 shadow-lg hover:shadow-xl">
                 {status === "loading" ? (

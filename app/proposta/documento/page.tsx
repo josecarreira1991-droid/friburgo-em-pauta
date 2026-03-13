@@ -15,9 +15,9 @@ import {
 
 const MANDATO_STATS = [
   { valor: "7.919", label: "Matérias legislativas", sub: "Recorde histórico em um único mandato", icon: FileText, cor: "text-[var(--accent)]" },
-  { valor: "1.647", label: "Projetos de Lei", sub: "PLOs apresentados de 2009 a 2012", icon: Scale, cor: "text-blue-600" },
+  { valor: "1.883", label: "Projetos de Lei", sub: "PLOs + Resoluções de 2009 a 2012", icon: Scale, cor: "text-blue-600" },
   { valor: "3.195", label: "Moções", sub: "Moções e Moções Especiais de Louvor", icon: Award, cor: "text-purple-600" },
-  { valor: "2.008", label: "Indicações", sub: "Pedidos de obras e serviços para o povo", icon: MapPin, cor: "text-green-600" },
+  { valor: "2.608", label: "Indicações", sub: "Pedidos de obras e serviços para o povo", icon: MapPin, cor: "text-green-600" },
   { valor: "118", label: "Requerimentos", sub: "Fiscalização do Executivo Municipal", icon: BookOpen, cor: "text-orange-600" },
   { valor: "5.550", label: "Votos em 2008", sub: "Recorde histórico de Nova Friburgo", icon: Vote, cor: "text-red-600" },
 ];
