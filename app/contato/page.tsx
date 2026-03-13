@@ -11,7 +11,6 @@ const SOCIALS = [
   { icon: Facebook, name: "Facebook", value: "Marcos Medeiros Friburgo", href: "https://www.facebook.com/marcosmedeirosfriburgo/", color: "hover:bg-blue-600" },
   { icon: Youtube, name: "YouTube", value: "TV do Povo — Canal 3", href: "https://www.youtube.com/@tvdopovo-canal3566", color: "hover:bg-red-600" },
   { icon: Twitter, name: "X / Twitter", value: "@marcosmedeiros_", href: "https://x.com/marcosmedeiros_", color: "hover:bg-black" },
-  { icon: Globe, name: "Site Oficial", value: "marcosmedeiros.net", href: "https://www.marcosmedeiros.net/", color: "hover:bg-[var(--accent)]" },
   { icon: MapPin, name: "Cidade", value: "Nova Friburgo, RJ", href: null, color: "" },
 ];
 

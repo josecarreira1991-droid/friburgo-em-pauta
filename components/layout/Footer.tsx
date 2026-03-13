@@ -48,7 +48,6 @@ export function Footer() {
             <h4 className="font-ui font-semibold text-white mb-4 uppercase text-sm tracking-wider">Contato</h4>
             <ul className="space-y-3 font-ui text-sm">
               <li className="flex items-center gap-2"><Phone className="w-4 h-4 text-[var(--accent)]" /> +55 22 99895-4874</li>
-              <li className="flex items-center gap-2"><Mail className="w-4 h-4 text-[var(--accent)]" /><a href="https://www.marcosmedeiros.net" target="_blank" rel="noopener" className="hover:text-[var(--accent)]">marcosmedeiros.net</a></li>
               <li className="flex items-center gap-2"><MessageCircle className="w-4 h-4 text-[var(--accent)]" /><Link href="/chat" className="hover:text-[var(--accent)] transition-colors">Chat com Marcos (IA)</Link></li>
             </ul>
             <div className="mt-6 bg-white/5 rounded-xl p-4 border border-white/10">

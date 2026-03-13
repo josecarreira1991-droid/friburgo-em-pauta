@@ -8,7 +8,7 @@
     "embed": "https://www.youtube.com/embed/GfM2azroxQM",
     "views": 9,
     "duration": "8:52",
-    "timestamp": "2026-03-13T14:04:19.948Z"
+    "timestamp": "2026-03-13T14:12:26.461Z"
   },
   {
     "id": "news-10",
@@ -27,7 +27,7 @@
     "embed": "https://www.youtube.com/embed/tOKHor-bbIc",
     "views": 6,
     "duration": "8:52",
-    "timestamp": "2026-03-13T10:04:19.948Z"
+    "timestamp": "2026-03-13T10:12:26.461Z"
   },
   {
     "id": "yt-MUEtdkdgvE4",
@@ -38,7 +38,7 @@
     "embed": "https://www.youtube.com/embed/MUEtdkdgvE4",
     "views": 0,
     "duration": "1:02",
-    "timestamp": "2026-03-13T06:04:19.948Z"
+    "timestamp": "2026-03-13T06:12:26.461Z"
   },
   {
     "id": "yt-2ddBZQxtDQI",
@@ -49,7 +49,7 @@
     "embed": "https://www.youtube.com/embed/2ddBZQxtDQI",
     "views": 2,
     "duration": "8:52",
-    "timestamp": "2026-03-13T02:04:19.948Z"
+    "timestamp": "2026-03-13T02:12:26.461Z"
   },
   {
     "id": "yt-SOAMsrJuiaY",
@@ -60,7 +60,7 @@
     "embed": "https://www.youtube.com/embed/SOAMsrJuiaY",
     "views": 0,
     "duration": "13",
-    "timestamp": "2026-03-12T22:04:19.948Z"
+    "timestamp": "2026-03-12T22:12:26.461Z"
   },
   {
     "id": "news-7",
@@ -111,7 +111,7 @@
     "embed": "https://www.youtube.com/embed/7WE99a2NxwU",
     "views": 1,
     "duration": "8:52",
-    "timestamp": "2026-03-12T18:04:19.948Z"
+    "timestamp": "2026-03-12T18:12:26.461Z"
   },
   {
     "id": "news-0",
@@ -130,7 +130,7 @@
     "embed": "https://www.youtube.com/embed/xb-2PVyuQko",
     "views": 2,
     "duration": "13",
-    "timestamp": "2026-03-12T14:04:19.948Z"
+    "timestamp": "2026-03-12T14:12:26.461Z"
   },
   {
     "id": "news-13",
@@ -157,7 +157,7 @@
     "embed": "https://www.youtube.com/embed/H13zFoQwZi8",
     "views": 5,
     "duration": "8:52",
-    "timestamp": "2026-03-12T10:04:19.948Z"
+    "timestamp": "2026-03-12T10:12:26.461Z"
   },
   {
     "id": "yt-LVOs1aUExhs",
@@ -168,7 +168,7 @@
     "embed": "https://www.youtube.com/embed/LVOs1aUExhs",
     "views": 0,
     "duration": "13",
-    "timestamp": "2026-03-12T06:04:19.948Z"
+    "timestamp": "2026-03-12T06:12:26.461Z"
   },
   {
     "id": "yt-9gDJRxS0yKU",
@@ -179,7 +179,7 @@
     "embed": "https://www.youtube.com/embed/9gDJRxS0yKU",
     "views": 4,
     "duration": "8:52",
-    "timestamp": "2026-03-12T02:04:19.948Z"
+    "timestamp": "2026-03-12T02:12:26.461Z"
   },
   {
     "id": "yt-Ddxtsv1h47g",
@@ -190,7 +190,7 @@
     "embed": "https://www.youtube.com/embed/Ddxtsv1h47g",
     "views": 4,
     "duration": "8:52",
-    "timestamp": "2026-03-11T22:04:19.948Z"
+    "timestamp": "2026-03-11T22:12:26.461Z"
   },
   {
     "id": "news-2",
@@ -201,14 +201,6 @@
     "timestamp": "Wed, 11 Mar 2026 19:10:30 GMT"
   },
   {
-    "id": "news-17",
-    "type": "news",
-    "title": "Sebrae realiza em Friburgo capacitação gratuita em horticultura - Jornal A Voz da Serra",
-    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNNDZFQnlrYkYwbXYxcURCTFJpWE0zcElOMHpoUHBpUmVFTkc4blEtZnBBbkFCcmVHa2tIN2FSSUR4UHFSVExYckEyVEttN3A5YW9QMjd1VzVzQjQwWjMyeEJzOUlfZENfVkUzeG1mNHFVUTRMR19PYTRvM0RTRHUxVkF5N04xbk1wQ09tQkFfTFlmQjU3VEVoQ0hCUnJGekV1?oc=5",
-    "source": "Nova Friburgo",
-    "timestamp": "Wed, 11 Mar 2026 18:10:37 GMT"
-  },
-  {
     "id": "yt-_VfXnhZA7T0",
     "type": "youtube",
     "title": "Moreira",
@@ -217,7 +209,15 @@
     "embed": "https://www.youtube.com/embed/_VfXnhZA7T0",
     "views": 10,
     "duration": "8:52",
-    "timestamp": "2026-03-11T18:04:19.948Z"
+    "timestamp": "2026-03-11T18:12:26.461Z"
+  },
+  {
+    "id": "news-17",
+    "type": "news",
+    "title": "Sebrae realiza em Friburgo capacitação gratuita em horticultura - Jornal A Voz da Serra",
+    "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNNDZFQnlrYkYwbXYxcURCTFJpWE0zcElOMHpoUHBpUmVFTkc4blEtZnBBbkFCcmVHa2tIN2FSSUR4UHFSVExYckEyVEttN3A5YW9QMjd1VzVzQjQwWjMyeEJzOUlfZENfVkUzeG1mNHFVUTRMR19PYTRvM0RTRHUxVkF5N04xbk1wQ09tQkFfTFlmQjU3VEVoQ0hCUnJGekV1?oc=5",
+    "source": "Nova Friburgo",
+    "timestamp": "Wed, 11 Mar 2026 18:10:37 GMT"
   },
   {
     "id": "news-9",
@@ -244,7 +244,7 @@
     "embed": "https://www.youtube.com/embed/5z_-1VpQtwk",
     "views": 6,
     "duration": "20:11",
-    "timestamp": "2026-03-11T14:04:19.948Z"
+    "timestamp": "2026-03-11T14:12:26.461Z"
   },
   {
     "id": "news-4",
@@ -271,7 +271,7 @@
     "embed": "https://www.youtube.com/embed/--LeX0F9F80",
     "views": 4,
     "duration": "20:15",
-    "timestamp": "2026-03-11T10:04:19.948Z"
+    "timestamp": "2026-03-11T10:12:26.461Z"
   },
   {
     "id": "yt-Z79-jVcL7y8",
@@ -282,7 +282,7 @@
     "embed": "https://www.youtube.com/embed/Z79-jVcL7y8",
     "views": 6,
     "duration": "19:59",
-    "timestamp": "2026-03-11T06:04:19.948Z"
+    "timestamp": "2026-03-11T06:12:26.461Z"
   },
   {
     "id": "yt-R2Bddm2L0AU",
@@ -293,7 +293,7 @@
     "embed": "https://www.youtube.com/embed/R2Bddm2L0AU",
     "views": 4,
     "duration": "4:52",
-    "timestamp": "2026-03-11T02:04:19.948Z"
+    "timestamp": "2026-03-11T02:12:26.461Z"
   },
   {
     "id": "yt-3y3kuPG3RQQ",
@@ -304,7 +304,7 @@
     "embed": "https://www.youtube.com/embed/3y3kuPG3RQQ",
     "views": 0,
     "duration": "2:04",
-    "timestamp": "2026-03-10T22:04:19.948Z"
+    "timestamp": "2026-03-10T22:12:26.461Z"
   },
   {
     "id": "news-15",
@@ -331,7 +331,7 @@
     "embed": "https://www.youtube.com/embed/y60sNUd3rH0",
     "views": 20,
     "duration": "3:21",
-    "timestamp": "2026-03-10T18:04:19.948Z"
+    "timestamp": "2026-03-10T18:12:26.461Z"
   },
   {
     "id": "news-5",
@@ -350,7 +350,7 @@
     "embed": "https://www.youtube.com/embed/LVmclafeR3I",
     "views": 60,
     "duration": "3:59",
-    "timestamp": "2026-03-10T14:04:19.948Z"
+    "timestamp": "2026-03-10T14:12:26.461Z"
   },
   {
     "id": "news-14",
@@ -377,7 +377,7 @@
     "embed": "https://www.youtube.com/embed/IirXMFKbX8M",
     "views": 160,
     "duration": "14:35",
-    "timestamp": "2026-03-10T10:04:19.948Z"
+    "timestamp": "2026-03-10T10:12:26.461Z"
   },
   {
     "id": "yt-pWRKGyDx3eY",
@@ -388,7 +388,7 @@
     "embed": "https://www.youtube.com/embed/pWRKGyDx3eY",
     "views": 2,
     "duration": "18:21",
-    "timestamp": "2026-03-10T06:04:19.948Z"
+    "timestamp": "2026-03-10T06:12:26.461Z"
   },
   {
     "id": "yt-vrMp42BlDKo",
@@ -399,7 +399,7 @@
     "embed": "https://www.youtube.com/embed/vrMp42BlDKo",
     "views": 111,
     "duration": "1:57",
-    "timestamp": "2026-03-10T02:04:19.948Z"
+    "timestamp": "2026-03-10T02:12:26.461Z"
   },
   {
     "id": "yt-hwpR93XglGs",
@@ -410,7 +410,7 @@
     "embed": "https://www.youtube.com/embed/hwpR93XglGs",
     "views": 0,
     "duration": "26",
-    "timestamp": "2026-03-09T22:04:19.948Z"
+    "timestamp": "2026-03-09T22:12:26.461Z"
   },
   {
     "id": "yt-_xuF3UgcXhk",
@@ -421,7 +421,7 @@
     "embed": "https://www.youtube.com/embed/_xuF3UgcXhk",
     "views": 0,
     "duration": "28",
-    "timestamp": "2026-03-09T18:04:19.948Z"
+    "timestamp": "2026-03-09T18:12:26.461Z"
   },
   {
     "id": "yt-9zzVIHB5ix4",
@@ -432,7 +432,7 @@
     "embed": "https://www.youtube.com/embed/9zzVIHB5ix4",
     "views": 48,
     "duration": "2:17",
-    "timestamp": "2026-03-09T14:04:19.948Z"
+    "timestamp": "2026-03-09T14:12:26.461Z"
   },
   {
     "id": "yt-OsEU_tP6zqM",
@@ -443,7 +443,7 @@
     "embed": "https://www.youtube.com/embed/OsEU_tP6zqM",
     "views": 0,
     "duration": "56",
-    "timestamp": "2026-03-09T10:04:19.948Z"
+    "timestamp": "2026-03-09T10:12:26.461Z"
   },
   {
     "id": "yt-JalAMEYQ164",
@@ -454,7 +454,7 @@
     "embed": "https://www.youtube.com/embed/JalAMEYQ164",
     "views": 2,
     "duration": "49",
-    "timestamp": "2026-03-09T06:04:19.948Z"
+    "timestamp": "2026-03-09T06:12:26.461Z"
   },
   {
     "id": "yt--vS1msw3t-A",
@@ -465,7 +465,7 @@
     "embed": "https://www.youtube.com/embed/-vS1msw3t-A",
     "views": 120,
     "duration": "13",
-    "timestamp": "2026-03-09T02:04:19.948Z"
+    "timestamp": "2026-03-09T02:12:26.461Z"
   },
   {
     "id": "yt-aPEx3_7Bs6Y",
@@ -476,7 +476,7 @@
     "embed": "https://www.youtube.com/embed/aPEx3_7Bs6Y",
     "views": 1,
     "duration": "1:07",
-    "timestamp": "2026-03-08T22:04:19.948Z"
+    "timestamp": "2026-03-08T22:12:26.461Z"
   },
   {
     "id": "yt-JOn7L0pR7OY",
@@ -487,6 +487,6 @@
     "embed": "https://www.youtube.com/embed/JOn7L0pR7OY",
     "views": 2,
     "duration": "58",
-    "timestamp": "2026-03-08T18:04:19.948Z"
+    "timestamp": "2026-03-08T18:12:26.461Z"
   }
 ]

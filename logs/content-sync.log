@@ -19,3 +19,10 @@
 [2026-03-13T14:04:19.949Z] === Content Sync Complete ===
 [2026-03-13T14:12:24.717Z] === Content Sync Started ===
 [2026-03-13T14:12:24.718Z] Syncing YouTube RSS...
+[2026-03-13T14:12:24.865Z] YouTube RSS: 15 entries
+[2026-03-13T14:12:24.865Z] Syncing news...
+[2026-03-13T14:12:26.460Z] News: 218 articles
+[2026-03-13T14:12:26.460Z] Skipping full YouTube sync (last < 6h)
+[2026-03-13T14:12:26.460Z] Generating social feed...
+[2026-03-13T14:12:26.463Z] Social feed: 50 items
+[2026-03-13T14:12:26.463Z] === Content Sync Complete ===

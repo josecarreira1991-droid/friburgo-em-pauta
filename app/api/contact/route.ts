@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 // Email de destino — trocar quando tiver domínio próprio
-const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "contato@marcosmedeiros.net";
+const CONTACT_EMAIL = process.env.CONTACT_EMAIL || "contato@friburgoempauta.com.br";
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       const { Resend } = await import("resend");
       const resend = new Resend(resendKey);
       await resend.emails.send({
-        from: "Portal Marcos Medeiros <noreply@marcosmedeiros.net>",
+        from: "Portal Marcos Medeiros <noreply@friburgoempauta.com.br>",
         to: [CONTACT_EMAIL],
         replyTo: email || undefined,
         subject: `[Portal] Mensagem de ${nome}`,
