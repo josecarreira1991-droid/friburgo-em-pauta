@@ -12,7 +12,7 @@ export function Footer() {
               <Image src="/images/marcos-perfil.jpg" alt="Marcos" width={48} height={48} className="rounded-full border-2 border-[var(--accent)]" />
               <div>
                 <h3 className="font-display text-2xl text-white">FRIBURGO <span className="text-[var(--accent)]">EM PAUTA</span></h3>
-                <p className="text-white/40 font-ui text-xs">Marcos Medeiros — DC 27 — Deputado Estadual 2026</p>
+                <p className="text-white/40 font-ui text-xs">Marcos Medeiros — DC 27 — Deputado Federal 2026</p>
               </div>
             </div>
             <p className="text-sm leading-relaxed mb-2">

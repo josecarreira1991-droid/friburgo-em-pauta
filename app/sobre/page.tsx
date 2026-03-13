@@ -24,7 +24,7 @@ export default function SobrePage() {
               <p className="text-white/60 font-ui mt-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4" /> Nova Friburgo, RJ
                 <span className="mx-2">|</span>
-                <Calendar className="w-4 h-4" /> Candidato Dep. Estadual 2026
+                <Calendar className="w-4 h-4" /> Candidato Dep. Federal 2026
               </p>
             </motion.div>
             <motion.div
@@ -78,7 +78,7 @@ export default function SobrePage() {
             </p>
             <h3 className="font-display text-2xl font-bold text-[var(--primary)] mt-10">Proposta para o Estado</h3>
             <p>
-              A proposta central de Marcos para a ALERJ e criar uma legislacao que obrigue municipios a ter um banco de dados de empresas locais, direcionando incentivos fiscais (Lei Rouanet, Lei do Esporte) para projetos dentro do proprio municipio.
+              A proposta central de Marcos para a Congresso Nacional e criar uma legislacao que obrigue municipios a ter um banco de dados de empresas locais, direcionando incentivos fiscais (Lei Rouanet, Lei do Esporte) para projetos dentro do proprio municipio.
             </p>
             <blockquote className="border-l-4 border-[var(--accent)] pl-6 italic text-lg">
               "O imposto vai embora do municipio, nao volta. Meu projeto e simples: o dinheiro que ja existe, que ja e pago, que ja e lei — fica aqui."

@@ -78,7 +78,7 @@ export default function PropostaPage() {
             <Image src="/images/marcos-perfil.jpg" alt="Marcos Medeiros" width={56} height={56} className="rounded-full border-2 border-[var(--primary)]/20" />
             <div className="text-left">
               <p className="font-ui font-bold text-[var(--primary)]">Marcos Medeiros</p>
-              <p className="text-[var(--primary)]/60 text-sm font-ui">Jornalista, TV do Povo — Pre-candidato Dep. Estadual</p>
+              <p className="text-[var(--primary)]/60 text-sm font-ui">Jornalista, TV do Povo — Pre-candidato Dep. Federal</p>
             </div>
           </div>
         </div>
@@ -209,7 +209,7 @@ export default function PropostaPage() {
               </a>
             </div>
             <div className="mt-12 flex items-center justify-center gap-6 text-white/30 text-sm font-ui">
-              <span>Democrata Cristao (DC)</span><span>•</span><span>Nova Friburgo, RJ</span><span>•</span><span>DC 27 — Deputado Estadual 2026</span>
+              <span>Democrata Cristao (DC)</span><span>•</span><span>Nova Friburgo, RJ</span><span>•</span><span>DC 27 — Deputado Federal 2026</span>
             </div>
           </motion.div>
         </div>

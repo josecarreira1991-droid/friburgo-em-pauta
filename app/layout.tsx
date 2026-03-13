@@ -6,12 +6,12 @@ import { ChatFAB } from "@/components/layout/ChatFAB";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Friburgo em Pauta | Marcos Medeiros — Deputado Estadual 2026",
-  description: "Portal politico de Marcos Medeiros, o vereador mais votado da historia de Nova Friburgo. Candidato a Deputado Estadual RJ 2026. 1.842+ projetos de lei.",
-  keywords: ["Marcos Medeiros", "Nova Friburgo", "Deputado Estadual", "RJ", "2026", "Friburgo em Pauta"],
+  title: "Friburgo em Pauta | Marcos Medeiros — Deputado Federal 2026",
+  description: "Portal politico de Marcos Medeiros, o vereador mais votado da historia de Nova Friburgo. Candidato a Deputado Federal RJ 2026. 1.842+ projetos de lei.",
+  keywords: ["Marcos Medeiros", "Nova Friburgo", "Deputado Federal", "RJ", "2026", "Friburgo em Pauta"],
   openGraph: {
     title: "Friburgo em Pauta | Marcos Medeiros",
-    description: "O vereador mais votado da historia de Nova Friburgo. Candidato a Deputado Estadual 2026.",
+    description: "O vereador mais votado da historia de Nova Friburgo. Candidato a Deputado Federal 2026.",
     url: "https://friburgoempautam.com.br",
     siteName: "Friburgo em Pauta",
     locale: "pt_BR",

@@ -12,7 +12,7 @@ const TIMELINE = [
   { ano: 2016, titulo: "Reeleito com forca", desc: "Nova Friburgo renova a confianca em Marcos Medeiros com outra votacao expressiva.", icone: "🗳️", destaque: false },
   { ano: 2020, titulo: "Vereador mais votado da historia", desc: "Marcos bate o recorde historico de votos para vereador em Nova Friburgo. O povo falou.", icone: "🏆", destaque: true },
   { ano: 2024, titulo: "1.842+ projetos de lei", desc: "Marcos atinge a marca de 1.842 projetos de lei criados — o maior legado legislativo da cidade.", icone: "📋", destaque: true },
-  { ano: 2026, titulo: "Candidato a Deputado Estadual", desc: "Nova Friburgo projeta Marcos para a ALERJ. A luta agora e pelo estado do Rio de Janeiro.", icone: "⭐", destaque: true },
+  { ano: 2026, titulo: "Candidato a Deputado Federal", desc: "Nova Friburgo projeta Marcos para a Congresso Nacional. A luta agora e pelo povo de Nova Friburgo em Brasilia.", icone: "⭐", destaque: true },
 ];
 
 export default function ConquistasPage() {

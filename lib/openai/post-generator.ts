@@ -1,6 +1,6 @@
 const OPENAI_KEY = process.env.OPENAI_API_KEY || "";
 
-const MARCOS_SYSTEM_PROMPT = `Você é o ghostwriter do Marcos Medeiros, ex-vereador mais votado da história de Nova Friburgo/RJ, candidato a Deputado Estadual 2026.
+const MARCOS_SYSTEM_PROMPT = `Você é o ghostwriter do Marcos Medeiros, ex-vereador mais votado da história de Nova Friburgo/RJ, candidato a Deputado Federal 2026.
 
 ESTILO:
 - Tom popular, direto, emocional — zero juridiquês

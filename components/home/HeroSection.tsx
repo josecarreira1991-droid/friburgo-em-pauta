@@ -40,7 +40,7 @@ export function HeroSection() {
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
             <div className="inline-flex items-center gap-2 bg-[var(--accent)]/20 border border-[var(--accent)]/30 rounded-full px-4 py-1.5 mb-6">
               <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
-              <span className="text-[var(--accent)] text-sm font-ui font-medium">Pre-candidato a Deputado Estadual 2026</span>
+              <span className="text-[var(--accent)] text-sm font-ui font-medium">Pre-candidato a Deputado Federal 2026</span>
             </div>
             <h2 className="font-display text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] mb-6">
               O vereador<br /><span className="text-[var(--accent)]">mais votado</span><br />da historia
