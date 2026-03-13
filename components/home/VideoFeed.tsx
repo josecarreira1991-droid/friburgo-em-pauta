@@ -1,17 +1,37 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Play, Clock, Eye } from "lucide-react";
+import { Play, Clock, Eye, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
-const DEMO_VIDEOS = [
-  { id: "1", titulo: "O imposto vai embora e nao volta", tipo: "avatar_heygen", duracao: 72, thumbnail: null },
-  { id: "2", titulo: "UPA: a conquista que salvou vidas", tipo: "avatar_heygen", duracao: 85, thumbnail: null },
-  { id: "3", titulo: "Nova Friburgo vista de cima", tipo: "broll_runway", duracao: 10, thumbnail: null },
-  { id: "4", titulo: "Educacao transforma — Estacio de Sa", tipo: "avatar_heygen", duracao: 63, thumbnail: null },
-];
+interface Video {
+  id: string;
+  title: string;
+  duration: number;
+  duration_string: string;
+  views: number;
+  thumbnail: string;
+  url: string;
+  embed: string;
+}
 
 export function VideoFeed() {
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [playing, setPlaying] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch("/data/youtube-videos.json")
+      .then(r => r.json())
+      .then((data: Video[]) => {
+        // Pick featured videos: longest ones with real titles
+        const featured = data
+          .filter(v => v.title.length > 10 && v.duration > 60)
+          .slice(0, 8);
+        setVideos(featured.length >= 4 ? featured : data.slice(0, 8));
+      });
+  }, []);
+
   return (
     <section className="py-20 bg-[var(--bg-dark)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -22,45 +42,108 @@ export function VideoFeed() {
           className="flex items-end justify-between mb-12"
         >
           <div>
-            <span className="text-[var(--accent)] font-ui font-semibold text-sm uppercase tracking-wider">Conteudo em Video</span>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-2">Videos e Pronunciamentos</h2>
+            <span className="text-red-500 font-ui font-semibold text-sm uppercase tracking-wider flex items-center gap-2">
+              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+              TV do Povo — Canal 3
+            </span>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-white mt-2">
+              Videos e Programas
+            </h2>
+            <p className="text-white/40 font-ui text-sm mt-1">Direto do canal com +3.500 videos</p>
           </div>
-          <Link href="/videos" className="text-[var(--accent)] font-ui text-sm hover:underline hidden sm:block">
-            Ver todos →
+          <Link href="/videos" className="text-[var(--accent)] font-ui text-sm hover:underline hidden sm:flex items-center gap-1">
+            Ver todos os {videos.length > 0 ? '289' : ''} videos <ExternalLink className="w-3.5 h-3.5" />
           </Link>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {DEMO_VIDEOS.map((video, i) => (
+        {/* Featured video - large */}
+        {videos[0] && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <div className="relative aspect-video max-h-[480px] rounded-2xl overflow-hidden bg-[var(--primary-med)] cursor-pointer group"
+              onClick={() => setPlaying(playing === videos[0].id ? null : videos[0].id)}>
+              {playing === videos[0].id ? (
+                <iframe
+                  src={`${videos[0].embed}?autoplay=1&rel=0`}
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              ) : (
+                <>
+                  <img src={videos[0].thumbnail} alt={videos[0].title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full bg-red-600/90 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                      <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3 className="text-white text-xl md:text-2xl font-display font-bold">{videos[0].title}</h3>
+                    <div className="flex items-center gap-4 mt-2 text-white/50 text-sm font-ui">
+                      <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {videos[0].duration_string}</span>
+                      {videos[0].views > 0 && <span className="flex items-center gap-1"><Eye className="w-4 h-4" /> {videos[0].views.toLocaleString("pt-BR")}</span>}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {videos.slice(1, 9).map((video, i) => (
             <motion.div
               key={video.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.08 }}
               className="group cursor-pointer"
+              onClick={() => setPlaying(playing === video.id ? null : video.id)}
             >
-              <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-[var(--primary-med)] mb-3">
-                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/60 to-transparent">
-                  <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:scale-110 transition-all">
-                    <Play className="w-6 h-6 text-white group-hover:text-[var(--primary)]" />
-                  </div>
-                </div>
-                <div className="absolute top-3 left-3">
-                  <span className={"px-2 py-1 rounded text-[10px] font-ui font-bold uppercase " + (video.tipo === "avatar_heygen" ? "bg-blue-500/80 text-white" : "bg-purple-500/80 text-white")}>
-                    {video.tipo === "avatar_heygen" ? "Avatar IA" : "Cinematico"}
-                  </span>
-                </div>
-                <div className="absolute bottom-3 left-3 right-3">
-                  <div className="flex items-center gap-3 text-white/60 text-xs font-ui">
-                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{video.duracao}s</span>
-                    <span className="flex items-center gap-1"><Eye className="w-3 h-3" />--</span>
-                  </div>
-                </div>
+              <div className="relative aspect-video rounded-xl overflow-hidden bg-[var(--primary-med)] mb-2">
+                {playing === video.id ? (
+                  <iframe
+                    src={`${video.embed}?autoplay=1&rel=0`}
+                    className="w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                ) : (
+                  <>
+                    <img src={video.thumbnail} alt={video.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      loading="lazy" />
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <div className="w-11 h-11 rounded-full bg-red-600 flex items-center justify-center shadow-lg">
+                        <Play className="w-4 h-4 text-white ml-0.5" fill="white" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-1.5 right-1.5 bg-black/80 text-white text-[10px] font-ui px-1.5 py-0.5 rounded">
+                      {video.duration_string}
+                    </div>
+                  </>
+                )}
               </div>
-              <h3 className="text-white text-sm font-ui font-medium leading-snug">{video.titulo}</h3>
+              <h3 className="text-white text-xs sm:text-sm font-ui font-medium leading-snug line-clamp-2 group-hover:text-[var(--accent)] transition-colors">
+                {video.title}
+              </h3>
             </motion.div>
           ))}
+        </div>
+
+        {/* Mobile CTA */}
+        <div className="mt-8 text-center sm:hidden">
+          <Link href="/videos" className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--accent)] text-[var(--primary)] rounded-full font-ui font-bold text-sm">
+            Ver todos os videos <ExternalLink className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>
