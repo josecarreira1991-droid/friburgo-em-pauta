@@ -5,12 +5,15 @@ import { ProjectsPreview } from "@/components/home/ProjectsPreview";
 import { SocialFeed } from "@/components/home/SocialFeed";
 import { ChatPreview } from "@/components/home/ChatPreview";
 import { LeadCapture } from "@/components/home/LeadCapture";
+import { EngajamentoSection } from "@/components/home/EngajamentoSection";
+import { ExitPopup } from "@/components/home/ExitPopup";
 import Link from "next/link";
-import { Tv, ArrowRight, ExternalLink } from "lucide-react";
+import { Tv, ArrowRight, ExternalLink, FileText } from "lucide-react";
 
 export default function Home() {
   return (
     <>
+      <ExitPopup />
       <HeroSection />
 
       {/* Banner Proposta */}
@@ -22,9 +25,14 @@ export default function Home() {
             </p>
             <p className="text-[var(--primary)]/70 font-ui text-sm mt-1">Proposta principal — Incentivos fiscais para Nova Friburgo</p>
           </div>
-          <Link href="/proposta" className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-5 py-2.5 rounded-full text-sm font-ui font-semibold hover:bg-[var(--primary-med)] transition-all shrink-0">
-            Ver Proposta Completa <ArrowRight className="w-4 h-4" />
-          </Link>
+          <div className="flex items-center gap-3 shrink-0">
+            <Link href="/proposta/documento" className="inline-flex items-center gap-2 bg-[var(--primary)] text-white px-5 py-2.5 rounded-full text-sm font-ui font-semibold hover:bg-[var(--primary-med)] transition-all">
+              <FileText className="w-4 h-4" /> Documento Completo
+            </Link>
+            <Link href="/proposta" className="inline-flex items-center gap-2 bg-[var(--primary)]/20 text-[var(--primary)] px-5 py-2.5 rounded-full text-sm font-ui font-semibold hover:bg-[var(--primary)]/30 transition-all">
+              Ver Proposta <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -48,6 +56,10 @@ export default function Home() {
       </section>
 
       <ConquistasCards />
+
+      {/* Seção de Engajamento — NOVA */}
+      <EngajamentoSection />
+
       <VideoFeed />
 
       {/* Link SAPL */}

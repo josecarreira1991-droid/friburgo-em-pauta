@@ -85,6 +85,10 @@ export default function PropostaPage() {
               className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-ui font-semibold text-lg transition-all">
               <MessageCircle className="w-5 h-5" /> Falar com Marcos
             </a>
+            <Link href="/proposta/documento"
+              className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white px-8 py-4 rounded-full font-ui font-semibold text-lg transition-all">
+              <FileText className="w-5 h-5" /> Documento Completo
+            </Link>
           </motion.div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }} className="mt-16">
             <ChevronDown className="w-8 h-8 text-white/20 mx-auto animate-bounce" />
@@ -307,6 +311,9 @@ export default function PropostaPage() {
               Quanto mais gente souber, mais rapido Nova Friburgo muda.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
+              <Link href="/proposta/documento" className="inline-flex items-center gap-2 bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--primary)] px-8 py-4 rounded-full font-ui font-bold text-lg transition-all hover:scale-105">
+                <FileText className="w-5 h-5" /> Ver Documento Completo
+              </Link>
               <a href="https://wa.me/5522998954874?text=Quero%20apoiar%20a%20proposta%20do%20Marcos%20Medeiros%20sobre%20incentivos%20fiscais%20pra%20Nova%20Friburgo" target="_blank" rel="noopener"
                 className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-ui font-bold text-lg transition-all hover:scale-105">
                 <MessageCircle className="w-5 h-5" /> Falar com Marcos
